@@ -8,7 +8,8 @@ namespace Persistence.Configurations
     {
         public void Configure(EntityTypeBuilder<Task> builder)
         {
-            throw new System.NotImplementedException();
+            builder.HasKey(task => task.ID);
+            builder.HasOne(c => c.Status).WithMany(e => e.Tasks).IsRequired();
         }
     }
 }

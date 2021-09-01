@@ -6,9 +6,11 @@ namespace Persistence.Configurations
 {
     public class StatusConfiguration:IEntityTypeConfiguration<Status>
     {
+
         public void Configure(EntityTypeBuilder<Status> builder)
         {
-            throw new System.NotImplementedException();
+            builder.HasKey(status => status.Status_ID);
+            builder.HasMany(c => c.Tasks).WithOne(e => e.Status).IsRequired();
         }
     }
 }
