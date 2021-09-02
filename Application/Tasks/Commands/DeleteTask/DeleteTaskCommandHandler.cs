@@ -7,7 +7,8 @@ using Task = Domain.Task;
 
 namespace Application.Tasks.Commands.DeleteTask
 {
-    public class DeleteTaskCommandHandler:IRequest<DeleteTaskCommand>
+    public class DeleteTaskCommandHandler
+        : IRequestHandler<DeleteTaskCommand>
     {
         private readonly ITaskDbContext _dbContext;
 
@@ -22,7 +23,7 @@ namespace Application.Tasks.Commands.DeleteTask
 
             if (entity == null || entity.ID != request.ID)
             {
-                throw new NotFoundException(nameof(Task), request.ID);
+                throw new NotFoundException(nameof(Tasks), request.ID);
             }
 
             _dbContext.Tasks.Remove(entity);

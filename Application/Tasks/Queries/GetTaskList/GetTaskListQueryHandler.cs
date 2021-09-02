@@ -21,10 +21,10 @@ namespace Application.Tasks.Queries.GetTaskList
         public async Task<TaskListVM> Handle(GetTaskListQuery request,
             CancellationToken cancellationToken)
         {
-            var taskQuery = await _dbContext.Tasks
-                .Where(task => task.ID == request.ID)
+            var taskQuery = await _dbContext
+                .Tasks
                 .ProjectTo<TaskLookupDto>(_mapper.ConfigurationProvider)
-                .ToListAsync(cancellationToken);
+                .ToListAsync();
 
             return new TaskListVM { Tasks = taskQuery };
         } 

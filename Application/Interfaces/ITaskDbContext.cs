@@ -11,6 +11,6 @@ namespace Application.Interfaces
     {
         DbSet<Task> Tasks { get; set; }
         DbSet<Status> Statuses { get; set; }
-        Task<Int32> SaveChangesAsync(CancellationToken cancellationToken);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

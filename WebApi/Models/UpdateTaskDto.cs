@@ -8,7 +8,7 @@ namespace WebApi.Models
     public class UpdateTaskDto:IMapWith<UpdateTaskCommand>
     {
         
-        public Int32 Id { get; set; }
+        public Guid Id { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
 

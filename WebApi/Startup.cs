@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Application;
 using Application.Common.Mappings;
 using Application.Interfaces;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -21,10 +22,6 @@ namespace WebApi
         public IConfiguration Configuration { get; }
 
         public Startup(IConfiguration configuration) => Configuration = configuration;
-        
-
-        
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -37,7 +34,7 @@ namespace WebApi
             services.AddApplication();
             services.AddPersistence(Configuration);
             services.AddControllers();
-
+            services.AddMediatR(typeof(AssemblyMappingProfile).GetTypeInfo().Assembly);
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll", policy =>

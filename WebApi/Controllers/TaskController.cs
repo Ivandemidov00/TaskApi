@@ -22,9 +22,10 @@ namespace WebApi.Controllers
         [HttpGet]
         public async Task<ActionResult<TaskListVM>> GetAll()
         {
+           
             var query = new GetTaskListQuery
             {
-                ID = Id
+                ID = IGuid
             };
             var vm = await Mediator.Send(query);
             return Ok(vm);
@@ -35,14 +36,14 @@ namespace WebApi.Controllers
         {
             var query = new GetTaskDetailsQuery
             { 
-                id = Id
+                id = id
             };
             var vm = await Mediator.Send(query);
             return Ok(vm);
         }
 
         [HttpPost]
-        public async Task<ActionResult<Guid>> Create([FromBody] CreateTaskDto createTaskDto)
+        public async Task<ActionResult<Int32>> Create([FromBody] CreateTaskDto createTaskDto)
         {
             var command = _mapper.Map<CreateTaskCommand>(createTaskDto);
             //command.Status = stat;
@@ -54,17 +55,17 @@ namespace WebApi.Controllers
         public async Task<IActionResult> Update([FromBody] UpdateTaskDto updateTaskDto)
         {
             var command = _mapper.Map<UpdateTaskCommand>(updateTaskDto);
-            command.ID = Id;
+            command.ID = IGuid;
             await Mediator.Send(command);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(Guid id)
+        public async Task<IActionResult> Delete(Int32 id)
         {
             var command = new DeleteTaskCommand()
             {
-                ID = Id
+                ID = id
             };
             await Mediator.Send(command);
             return NoContent();
