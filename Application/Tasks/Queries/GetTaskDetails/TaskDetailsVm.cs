@@ -10,7 +10,7 @@ namespace Application.Tasks.Queries.GetTaskDetails
         public Int32 Id { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
-        public Status Status { get; set; }
+        public String Status { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -22,7 +22,7 @@ namespace Application.Tasks.Queries.GetTaskDetails
                 .ForMember(taskVm => taskVm.Description,
                     opt => opt.MapFrom(task => task.Description))
                 .ForMember(taskVM => taskVM.Status,
-                    opt => opt.MapFrom(task => task.Status));
+                    opt => opt.MapFrom(task => task.Status.Status_name));
         }
     }
 }

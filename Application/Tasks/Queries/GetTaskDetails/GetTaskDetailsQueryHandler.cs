@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Common.Exceptions;
@@ -20,10 +21,12 @@ namespace Application.Tasks.Queries.GetTaskDetails
         public async Task<TaskDetailsVm> Handle(GetTaskDetailsQuery request,
             CancellationToken cancellationToken)
         {
-            var entity = await _dbContext.Tasks
-                .FirstOrDefaultAsync(task =>
-                    task.ID == request.id, cancellationToken);
-
+            var entity = await _dbContext
+                .Tasks
+                .Where(p => p.ID == request.id)
+                .Include(p => p.Status)
+                .FirstOrDefaultAsync(cancellationToken);
+            
             if (entity == null || entity.ID != request.id)
             {
                 throw new NotFoundException(nameof(Task), request.id);

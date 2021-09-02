@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Interfaces;
+using Domain;
 using MediatR;
 
 namespace Application.Tasks.Commands.CreateTask
@@ -14,11 +15,15 @@ namespace Application.Tasks.Commands.CreateTask
             _dbContext = dbContext;
         public async Task<Int32> Handle(CreateTaskCommand request, CancellationToken cancellationToken)
         {
+           /* var status = new Domain.Status()
+            {
+                Status_ID = request.Status,
+            };*/
             var task = new Domain.Task()
             {
-                Name= request.Name,
+                Name = request.Name,
                 Description = request.Description,
-                Status = request.Status,
+                Status = new Status {Status_ID = request.Status}
             };
 
             await _dbContext.Tasks.AddAsync(task, cancellationToken);

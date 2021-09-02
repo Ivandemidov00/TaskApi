@@ -11,7 +11,7 @@ namespace Application.Tasks.Queries.GetTaskList
         public String Name { get; set; }
         
         public String Description { get; set; }
-        public Status Status { get; set; }
+        public String Status { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -23,7 +23,7 @@ namespace Application.Tasks.Queries.GetTaskList
                 .ForMember(taskDto => taskDto.Description,
                     opt => opt.MapFrom(task => task.Description))
                 .ForMember(taskDto => taskDto.Status,
-                    opt => opt.MapFrom(task => task.Status));
+                    opt => opt.MapFrom(task => task.Status.Status_name));
         }  
     }
 }
