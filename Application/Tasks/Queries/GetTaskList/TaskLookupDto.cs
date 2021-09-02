@@ -9,6 +9,9 @@ namespace Application.Tasks.Queries.GetTaskList
     {
         public Int32 ID { get; set; }
         public String Name { get; set; }
+        
+        public String Description { get; set; }
+        public Status Status { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -16,7 +19,11 @@ namespace Application.Tasks.Queries.GetTaskList
                 .ForMember(taskDto => taskDto.ID,
                     opt => opt.MapFrom(task => task.ID))
                 .ForMember(taskDto => taskDto.Name,
-                    opt => opt.MapFrom(task => task.Name));
+                    opt => opt.MapFrom(task => task.Name))
+                .ForMember(taskDto => taskDto.Description,
+                    opt => opt.MapFrom(task => task.Description))
+                .ForMember(taskDto => taskDto.Status,
+                    opt => opt.MapFrom(task => task.Status));
         }  
     }
 }

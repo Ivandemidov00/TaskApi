@@ -5,8 +5,8 @@ namespace Domain
     public class Task
     {
         public Int32 ID;
-        public String Name;
-        public String Description;
+        public string Name;
+        public string Description;
         public Status Status;
     }
 }
