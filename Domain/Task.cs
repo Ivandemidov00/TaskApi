@@ -7,6 +7,7 @@ namespace Domain
         public Int32 ID;
         public String Name;
         public String Description;
+        public Int32 StatusId;
         public Status Status;
     }
 }

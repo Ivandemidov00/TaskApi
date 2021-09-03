@@ -10,7 +10,7 @@ namespace Persistence.Configurations
         public void Configure(EntityTypeBuilder<Status> builder)
         {
             builder.HasKey(status => status.Status_ID);
-            builder.Property(p => p.Status_name).IsRequired().HasMaxLength(30);
+            builder.Property(p => p.Status_name).HasMaxLength(30);
             builder.HasMany(c => c.Tasks).WithOne(e => e.Status).OnDelete(DeleteBehavior.Cascade).IsRequired();
         }
     }

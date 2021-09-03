@@ -46,7 +46,6 @@ namespace WebApi.Controllers
         public async Task<ActionResult<Int32>> Create([FromBody] CreateTaskDto createTaskDto)
         {
             var command = _mapper.Map<CreateTaskCommand>(createTaskDto);
-            //command.Status = stat;
             var noteId = await Mediator.Send(command);
             return Ok(noteId);
         }
@@ -55,7 +54,6 @@ namespace WebApi.Controllers
         public async Task<IActionResult> Update([FromBody] UpdateTaskDto updateTaskDto)
         {
             var command = _mapper.Map<UpdateTaskCommand>(updateTaskDto);
-            command.ID = IGuid;
             await Mediator.Send(command);
             return NoContent();
         }

@@ -1,3 +1,4 @@
+using System;
 using Application.Common.Mappings;
 using Application.Tasks.Commands.CreateTask;
 using AutoMapper;
@@ -9,7 +10,7 @@ namespace WebApi.Models
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        public Status Status { get; set; }
+        public Int32 Status { get; set; }
 
         public void Mapping(Profile profile)
         {

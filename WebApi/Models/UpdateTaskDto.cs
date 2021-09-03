@@ -8,9 +8,11 @@ namespace WebApi.Models
     public class UpdateTaskDto:IMapWith<UpdateTaskCommand>
     {
         
-        public Guid Id { get; set; }
+        public Int32 Id { get; set; }
         public String Name { get; set; }
         public String Description { get; set; }
+        
+        public Int32 StatusId { get; set; }
 
         public void Mapping(Profile profile)
         {
@@ -20,7 +22,9 @@ namespace WebApi.Models
                 .ForMember(taskCommand => taskCommand.Name,
                     opt => opt.MapFrom(taskDto => taskDto.Name))
                 .ForMember(taskCommand => taskCommand.Description,
-                    opt => opt.MapFrom(taskDto => taskDto.Description));
+                    opt => opt.MapFrom(taskDto => taskDto.Description))
+                .ForMember(taskCommand => taskCommand.Status,
+                    opt => opt.MapFrom(taskDto => taskDto.StatusId));
         }
     }
 }

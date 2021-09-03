@@ -28,7 +28,7 @@ namespace Application.Tasks.Commands.UpdateTask
                 throw new NotFoundException(nameof(Task), request.ID);
             }
 
-            entity.Status = request.Status;
+            entity.StatusId = request.Status;
             entity.Description = request.Description;
             entity.Name = request.Name;
 
