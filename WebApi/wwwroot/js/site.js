@@ -23,10 +23,7 @@ function addItem() {
     const addNameTextbox = document.getElementById('add-name');
     const addDescriptionTextbox = document.getElementById('add-description');
     const addStatusOption= document.getElementById('status');
-    if(addDescriptionTextbox===undefined || addDescriptionTextbox===null||addNameTextbox===undefined||addNameTextbox===null) {
-        helpadd();
-        addItem();
-    }
+   
     const item = {
         "Name":addNameTextbox.value,
         "Description":addDescriptionTextbox.value.trim(),
