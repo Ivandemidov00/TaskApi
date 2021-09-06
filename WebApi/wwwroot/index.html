@@ -6,8 +6,7 @@
     <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
-<h1></h1>
-<h3>Add</h3>
+<h1 id="header">Add</h1>
 <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
     <input type="text" id="add-name" placeholder="name">
     <input type="text" id="add-description" placeholder="description">
@@ -19,7 +18,7 @@
 <table>
 <tbody id ="edit"></tbody>
 </table>
-<p id="counter"></p>
+<h2 id="counter"></h2>
 <p id="help"></p>
 <table>
     <tr>
@@ -27,6 +26,13 @@
         <th>Tasks</th>
         <th></th>
         <th></th>
+        <th></th>
+    </tr>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>description</th>
+        <th>status</th>
         <th></th>
     </tr>
     <tbody id="tasks"></tbody>

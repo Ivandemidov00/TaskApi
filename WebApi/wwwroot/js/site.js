@@ -23,6 +23,10 @@ function addItem() {
     const addNameTextbox = document.getElementById('add-name');
     const addDescriptionTextbox = document.getElementById('add-description');
     const addStatusOption= document.getElementById('status');
+    if(addDescriptionTextbox===undefined || addDescriptionTextbox===null||addNameTextbox===undefined||addNameTextbox===null) {
+        helpadd();
+        addItem();
+    }
     const item = {
         "Name":addNameTextbox.value,
         "Description":addDescriptionTextbox.value.trim(),
@@ -70,10 +74,6 @@ function deleteItem() {
 }
 
 function displayEditForm(id) {
-    //document.getElementById('edit-name').value = item.name;
-    //document.getElementById('edit-id').value = item.id;
-    //document.getElementById('edit-isComplete').checked = item.isComplete;
-    //document.getElementById('editForm').style.display = 'block';
     var number = checkArray(id)
     document.getElementById('add-name').value = tasks[number].name;
     document.getElementById('add-description').value = tasks[number].description;
@@ -86,17 +86,12 @@ function checkArray(id){
     }
 }
 function updateItem() {
-   // const itemId = document.getElementById('edit-id').value;
-   // const item = {
-   //     id: parseInt(itemId, 10),
-   //     isComplete: document.getElementById('edit-isComplete').checked,
-   //     name: document.getElementById('edit-name').value.trim()
-   // };
     var id = checkbutton();
     while(id == undefined){
         help()
         updateItem()
     }
+    document.getElementById('header').innerText = `Edit`;
     displayEditForm(id)
     
     
@@ -122,11 +117,16 @@ function saveItem(){
         },
         body: JSON.stringify(item)
     })
-        .then(() => getItems())
+        .then(() => {
+            getItems(); 
+            addNameTextbox.value = '';
+            addDescriptionTextbox.value='';
+            document.getElementById('header').innerText = `Add`;
+        })
         .catch(error => console.error('Unable to update item.', error));
-        
-
+    
     closeInput();
+    
 
     return false;
 }
@@ -155,8 +155,7 @@ function _displayItems(data) {
     _displayCount(data.length);
     
     const button = document.createElement('button');
-   // var dataToJson = JSON.parse(data)
-    //dataToJson.status[0].
+   
     let deleteEButton = button.cloneNode(false);
     deleteEButton.innerText = 'Delete';
     deleteEButton.setAttribute('onclick', `deleteItem()`);
