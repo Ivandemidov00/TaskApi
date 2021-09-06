@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Application.Common.Exceptions;
 using Application.Interfaces;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Task = Domain.Task;
 
 namespace Application.Tasks.Commands.DeleteTask
@@ -18,8 +19,10 @@ namespace Application.Tasks.Commands.DeleteTask
         public async Task<Unit> Handle(DeleteTaskCommand request,
             CancellationToken cancellationToken)
         {
-            var entity = await _dbContext.Tasks
-                .FindAsync(new object[] { request.ID }, cancellationToken);
+            var entity = await _dbContext.Tasks.FirstOrDefaultAsync(task =>
+                task.ID == request.ID, cancellationToken);
+            //var entity = await _dbContext.Tasks
+            //    .FindAsync(new object[] { request.ID }, cancellationToken);
 
             if (entity == null || entity.ID != request.ID)
             {

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>To-do CRUD</title>
+    <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+<h1></h1>
+<h3>Add</h3>
+<form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+    <input type="text" id="add-name" placeholder="name">
+    <input type="text" id="add-description" placeholder="description">
+    <select id="status"></select>
+    <input type="submit" value="Add">
+</form>
+
+
+<table>
+<tbody id ="edit"></tbody>
+</table>
+<p id="counter"></p>
+<p id="help"></p>
+<table>
+    <tr>
+        <th></th>
+        <th>Tasks</th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tbody id="tasks"></tbody>
+</table>
+
+<script src="js/site.js" asp-append-version="true"></script>
+<script type="text/javascript">
+    getItems();
+</script>
+</body>
+</html>
